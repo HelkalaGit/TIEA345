@@ -2,6 +2,10 @@ Laitoin crontabiin:
 * * * * * python /home/pi/camera.py
 @reboot python /home/pi/camera.py
 
+Crontab ottaa kuvan nyt joka minuutti tehtävän helpottamiseksi.
+Oikea tasatunnein olisi:
+0 * * * * python /home/pi/camera.py
+
 camera.py koodi on:
 from picamera import PiCamera 
 from time import sleep
