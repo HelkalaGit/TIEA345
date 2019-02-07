@@ -1,0 +1,15 @@
+Laitoin crontabiin:
+* * * * * python /home/pi/camera.py
+@reboot python /home/pi/camera.py
+
+camera.py koodi on:
+from picamera import PiCamera 
+from time import sleep
+
+camera = PiCamera()
+tiedosto = 'valvonta.jpg'
+
+camera.start_preview()
+sleep(1)
+camera.capture(tiedosto)
+camera.stop_preview()
