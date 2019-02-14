@@ -1,0 +1,73 @@
+Demot 5.1 ja 5.2... 5.1 tehty sisältyen 5.2 liikennevaloihin.
+
+Asensin wiringPi raspille ohjeiden mukaan.
+Kytkennät piiriin samalla tavalla kuin tokassa demossa.
+
+Kun koodi oli tehty niin ajettiin gcc -o program Cvalot.c -lwiringPi
+jonka luoma ohjelma ajettiin komennolla sudo ./program
+
+Koodi
+--------------------------------------------------------------------------
+/*import lause kirjastolle */
+#include <wiringPi.h>
+#include <time.h>
+
+int main (void)
+{
+    int AV = 5;
+    int AK = 6; 
+    int AP = 13;
+
+    int KV = 12;
+    int KK = 16; 
+    int KP= 20;
+
+    int NAPPI = 26;
+    int PIR = 25;
+
+    
+    wiringPiSetupGpio ();
+    pinMode(AV, OUTPUT);
+    pinMode(AK, OUTPUT);
+    pinMode(AP, OUTPUT);
+    
+    pinMode(KV, OUTPUT);
+    pinMode(KK, OUTPUT);
+    pinMode(KP, OUTPUT);
+    
+    pinMode(NAPPI, INPUT);
+    pinMode(PIR, INPUT);
+    
+    digitalWrite(AV, HIGH);
+    digitalWrite(KP, HIGH);
+    
+    for(;;)
+    {
+    
+    if(digitalRead(NAPPI))
+        {
+            digitalWrite(KK, HIGH);
+            if(digitalRead(PIR))
+                {
+                    delay(2000);
+                }
+            digitalWrite(AK, HIGH); delay(1000);
+            digitalWrite(AV, LOW);
+            digitalWrite(AK, LOW);
+            digitalWrite(KP, LOW);
+            digitalWrite(KK, LOW);
+            digitalWrite(AP, HIGH);
+            digitalWrite(KV, HIGH);
+            delay(2000);
+            digitalWrite(KV, LOW);
+            digitalWrite(KP, HIGH);
+            delay(500);
+            digitalWrite(AK, HIGH);
+            delay(500);
+            digitalWrite(AP, LOW);
+            digitalWrite(AK, LOW);
+            digitalWrite(AV, HIGH);
+        }
+    }return 0;
+    
+}
