@@ -1,0 +1,5 @@
+4.1 Ensin asensin motionin ohjeiden mukaan. Muutin config tiedostossa tarvittavat polut oikeiksi.
+4.2 Vaihdoin motionissa precapture arvoa ja post capturea.
+
+4.3 Laitoin max_movie_time : 10, post_capture : 10 ja event_gap : 10.
+4.4 Vaihdoin area_detectiin : 5 eli keskialueen.
